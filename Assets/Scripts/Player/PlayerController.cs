@@ -11,6 +11,12 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private Actor player;
 
+    /// <summary>
+    /// Reference to map
+    /// </summary>
+    [SerializeField]
+    private Map map;
+
     private void Awake()
     {
         // Make sure we have an actor (default to oliver if not specified)
@@ -26,6 +32,11 @@ public class PlayerController : Singleton<PlayerController>
 
         // Update camera to follow player actor
         CameraController.Instance.CameraUpdate(player);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            map.PullMap(true);
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            map.PullMap(false);
     }
 
     /// <summary>

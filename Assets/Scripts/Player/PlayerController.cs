@@ -33,10 +33,11 @@ public class PlayerController : Singleton<PlayerController>
         // Update camera to follow player actor
         CameraController.Instance.CameraUpdate(player);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            map.PullMap(true);
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            map.PullMap(false);
+        // Pull map up/down based on mouse scroll input
+        if (Input.mouseScrollDelta.y > 0)
+            map.SetMap(Map.State.SHOWN);
+        else if (Input.mouseScrollDelta.y < 0)
+            map.SetMap(Map.State.HIDDEN);
     }
 
     /// <summary>

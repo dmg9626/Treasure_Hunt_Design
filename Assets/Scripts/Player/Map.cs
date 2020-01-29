@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D;
 using UnityEngine;
 
 public class Map : MonoBehaviour
@@ -25,27 +26,39 @@ public class Map : MonoBehaviour
     /// </summary>
     [SerializeField] private float transitionDuration;
 
+    public enum State { HIDDEN, SHOWN }
+
+    /// <summary>
+    /// Tells whether map is currently shown or hidden
+    /// </summary>
+    private State state = State.SHOWN;
+
     // Start is called before the first frame update
     void Start()
     {
         if (!pivot)
-        {
             Debug.LogError(name + " | missing pivot point!");
-        }
     }
 
-    public void PullMap(bool up)
+    public void SetMap(State newState)
     {
+        // Return if already moving map, or map is already in specified state
         if (bringMapCoroutine != null)
-        {
-            Debug.Log("Already animating - ignoring command");
             return;
+        else if (state.Equals(newState))
+        {
+            return;
+            Debug.Log("Already in requested state " + newState);
         }
 
-        if (up)
+        // Show/hide map
+        if (newState.Equals(State.SHOWN))
             bringMapCoroutine = StartCoroutine(RotateMap(mapUpPosition));
         else
             bringMapCoroutine = StartCoroutine(RotateMap(mapDownPosition));
+        
+        // Update state
+        state = newState;
     }
 
 
@@ -63,7 +76,6 @@ public class Map : MonoBehaviour
     {
         // Save starting rotation
         float startRotation = pivot.localEulerAngles.x;
-        Debug.Log("Rotating map from " + startRotation + " towards " + targetRotation);
 
         // Rotate with hermite curve
         float t = 0; while(t < 1)

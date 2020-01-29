@@ -43,29 +43,21 @@ public class Map : MonoBehaviour
     public void SetMap(State newState)
     {
         // Return if already moving map, or map is already in specified state
-        if (bringMapCoroutine != null)
+        if (rotateMapCoroutine != null || state.Equals(newState))
             return;
-        else if (state.Equals(newState))
-        {
-            return;
-            Debug.Log("Already in requested state " + newState);
-        }
 
         // Show/hide map
         if (newState.Equals(State.SHOWN))
-            bringMapCoroutine = StartCoroutine(RotateMap(mapUpPosition));
+            rotateMapCoroutine = StartCoroutine(RotateMap(mapUpPosition));
         else
-            bringMapCoroutine = StartCoroutine(RotateMap(mapDownPosition));
+            rotateMapCoroutine = StartCoroutine(RotateMap(mapDownPosition));
         
         // Update state
         state = newState;
     }
 
 
-    /// <summary>
-    /// Instance of BringMap
-    /// </summary>
-    private Coroutine bringMapCoroutine;
+    private Coroutine rotateMapCoroutine;
 
     /// <summary>
     /// Rotate map pivot towards given rotation
@@ -90,6 +82,6 @@ public class Map : MonoBehaviour
         pivot.eulerAngles = new Vector3(targetRotation, pivot.eulerAngles.y, pivot.eulerAngles.z);
 
         // Set coroutine to null so it can be called again
-        bringMapCoroutine = null;
+        rotateMapCoroutine = null;
     }
 }

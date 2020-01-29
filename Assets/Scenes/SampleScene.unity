@@ -346,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616486638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.32, y: 0, z: 14.63}
+  m_LocalPosition: {x: -105.6, y: 17.84, z: 54.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 679123738}
@@ -363,8 +363,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0.9714, b: 0.740566, a: 1}
-  m_Intensity: 12.58
-  m_Range: 10
+  m_Intensity: 4
+  m_Range: 6.83
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1246,6 +1246,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 265690445, guid: 07a8b1cc393cc9d46800d5a836421d2b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.4027467
+      objectReference: {fileID: 0}
+    - target: {fileID: 265690445, guid: 07a8b1cc393cc9d46800d5a836421d2b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.91531146
+      objectReference: {fileID: 0}
+    - target: {fileID: 265690445, guid: 07a8b1cc393cc9d46800d5a836421d2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 47.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7611556166726980624, guid: 07a8b1cc393cc9d46800d5a836421d2b,
         type: 3}
       propertyPath: m_Name

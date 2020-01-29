@@ -31,7 +31,7 @@ public class Map : MonoBehaviour
     /// <summary>
     /// Tells whether map is currently shown or hidden
     /// </summary>
-    private State state = State.SHOWN;
+    private State state = State.HIDDEN;
 
     // Start is called before the first frame update
     void Start()
